@@ -1,6 +1,6 @@
 # coronavirus_rest_api_flutter_course
 
-A new Flutter project.
+A new Flutter project updated to work with Flutter 3.29.3.
 
 ## Getting Started
 

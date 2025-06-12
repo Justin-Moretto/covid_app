@@ -10,9 +10,10 @@ class EndpointCardData {
 }
 
 class EndpointCard extends StatelessWidget {
-  const EndpointCard({Key key, this.endpoint, this.value}) : super(key: key);
+  const EndpointCard({Key? key, required this.endpoint, this.value})
+      : super(key: key);
   final Endpoint endpoint;
-  final int value;
+  final int? value;
 
   static Map<Endpoint, EndpointCardData> _cardsData = {
     Endpoint.cases:
@@ -46,11 +47,11 @@ class EndpointCard extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               Text(
-                cardData.title,
+                cardData!.title,
                 style: Theme.of(context)
                     .textTheme
-                    .headline
-                    .copyWith(color: cardData.color),
+                    .titleLarge!
+                    .copyWith(color: cardData!.color),
               ),
               SizedBox(height: 4),
               SizedBox(
@@ -60,12 +61,12 @@ class EndpointCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
                     Image.asset(
-                      cardData.assetName,
-                      color: cardData.color,
+                      cardData!.assetName,
+                      color: cardData!.color,
                     ),
                     Text(
                       formattedValue,
-                      style: Theme.of(context).textTheme.display1.copyWith(
+                      style: Theme.of(context).textTheme.headlineMedium!.copyWith(
                           color: cardData.color, fontWeight: FontWeight.w500),
                     ),
                   ],
