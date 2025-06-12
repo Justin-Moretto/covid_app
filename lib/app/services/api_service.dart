@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:coronavirus_rest_api_flutter_course/app/services/endpoint_data.dart';
-import 'package:flutter/material.dart';
+
 import 'package:http/http.dart' as http;
 import 'package:coronavirus_rest_api_flutter_course/app/services/api.dart';
 
@@ -27,8 +27,8 @@ class APIService {
   }
 
   Future<EndpointData> getEndpointData({
-    @required String accessToken,
-    @required Endpoint endpoint,
+    required String accessToken,
+    required Endpoint endpoint,
   }) async {
     final uri = api.endpointUri(endpoint);
     final response = await http.get(

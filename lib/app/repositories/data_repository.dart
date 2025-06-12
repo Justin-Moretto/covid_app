@@ -7,16 +7,16 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 
 class DataRepository {
-  DataRepository({@required this.apiService, @required this.dataCacheService});
+  DataRepository({required this.apiService, required this.dataCacheService});
   final APIService apiService;
   final DataCacheService dataCacheService;
 
-  String _accessToken;
+  String? _accessToken;
 
   Future<EndpointData> getEndpointData(Endpoint endpoint) async =>
       await _getDataRefreshingToken<EndpointData>(
         onGetData: () => apiService.getEndpointData(
-            accessToken: _accessToken, endpoint: endpoint),
+            accessToken: _accessToken!, endpoint: endpoint),
       );
 
   EndpointsData getAllEndpointsCachedData() => dataCacheService.getData();
@@ -30,7 +30,7 @@ class DataRepository {
     return endpointsData;
   }
 
-  Future<T> _getDataRefreshingToken<T>({Future<T> Function() onGetData}) async {
+  Future<T> _getDataRefreshingToken<T>({required Future<T> Function() onGetData}) async {
     try {
       if (_accessToken == null) {
         _accessToken = await apiService.getAccessToken();
@@ -49,15 +49,15 @@ class DataRepository {
   Future<EndpointsData> _getAllEndpointsData() async {
     final values = await Future.wait([
       apiService.getEndpointData(
-          accessToken: _accessToken, endpoint: Endpoint.cases),
+          accessToken: _accessToken!, endpoint: Endpoint.cases),
       apiService.getEndpointData(
-          accessToken: _accessToken, endpoint: Endpoint.casesSuspected),
+          accessToken: _accessToken!, endpoint: Endpoint.casesSuspected),
       apiService.getEndpointData(
-          accessToken: _accessToken, endpoint: Endpoint.casesConfirmed),
+          accessToken: _accessToken!, endpoint: Endpoint.casesConfirmed),
       apiService.getEndpointData(
-          accessToken: _accessToken, endpoint: Endpoint.deaths),
+          accessToken: _accessToken!, endpoint: Endpoint.deaths),
       apiService.getEndpointData(
-          accessToken: _accessToken, endpoint: Endpoint.recovered),
+          accessToken: _accessToken!, endpoint: Endpoint.recovered),
     ]);
     return EndpointsData(
       values: {
