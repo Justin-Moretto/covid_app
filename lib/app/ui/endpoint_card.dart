@@ -47,11 +47,11 @@ class EndpointCard extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               Text(
-                cardData.title,
+                cardData!.title,
                 style: Theme.of(context)
                     .textTheme
-                    .headline6!
-                    .copyWith(color: cardData.color),
+                    .titleLarge!
+                    .copyWith(color: cardData!.color),
               ),
               SizedBox(height: 4),
               SizedBox(
@@ -61,12 +61,12 @@ class EndpointCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
                     Image.asset(
-                      cardData.assetName,
-                      color: cardData.color,
+                      cardData!.assetName,
+                      color: cardData!.color,
                     ),
                     Text(
                       formattedValue,
-                      style: Theme.of(context).textTheme.headline4!.copyWith(
+                      style: Theme.of(context).textTheme.headlineMedium!.copyWith(
                           color: cardData.color, fontWeight: FontWeight.w500),
                     ),
                   ],

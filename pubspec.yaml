@@ -70,3 +70,7 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
+
+dependency_overrides:
+  file: ^7.0.0
+  platform: ^3.1.0

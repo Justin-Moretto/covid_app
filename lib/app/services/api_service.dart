@@ -39,7 +39,7 @@ class APIService {
       final List<dynamic> data = json.decode(response.body);
       if (data.isNotEmpty) {
         final Map<String, dynamic> endpointData = data[0];
-        final String responseJsonKey = _responseJsonKeys[endpoint];
+        final String responseJsonKey = _responseJsonKeys[endpoint]!;
         final int value = endpointData[responseJsonKey];
         final String dateString = endpointData['date'];
         final date = DateTime.tryParse(dateString);
